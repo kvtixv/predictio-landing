@@ -42,4 +42,5 @@ export default function RegisterPage() {
       </button>
     </div>
   )
-}
+} 
+
