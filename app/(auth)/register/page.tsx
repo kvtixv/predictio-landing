@@ -1,3 +1,4 @@
+console.log("NOWY REGISTER")
 "use client"
 
 import { useState } from "react"
