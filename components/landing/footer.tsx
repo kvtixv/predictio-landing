@@ -22,7 +22,7 @@ const FOOTER_LINKS = [
     title: "Prawne",
     links: [
       { label: "Regulamin", href: "/terms" },
-      { label: "Prywatnosc", href: "/privacy" },
+      { label: "Prywatność", href: "/privacy" },
       { label: "Cookies", href: "/cookies" },
     ],
   },
@@ -40,12 +40,12 @@ export function Footer() {
                 <Zap className="h-4 w-4" />
               </div>
               <span className="text-lg font-extrabold tracking-tight">
-                TipsterAI
+                Predictio
               </span>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Profesjonalne predykcje meczow pilkarskich napedzane sztuczna
-              inteligencja.
+              Profesjonalne predykcje meczów piłkarskich napędzane sztuczną
+              inteligencją.
             </p>
           </div>
 
@@ -73,10 +73,10 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/50 pt-8 md:flex-row">
           <p className="text-sm text-muted-foreground">
-            2024-2026 TipsterAI. Wszystkie prawa zastrzezone.
+            2026 Predictio. Wszystkie prawa zastrzeżone.
           </p>
           <p className="text-xs text-muted-foreground/70">
-            Typuj odpowiedzialnie. Hazard moze uzalezniac.
+            Typuj odpowiedzialnie. Hazard moze uzależniać.
           </p>
         </div>
       </div>
