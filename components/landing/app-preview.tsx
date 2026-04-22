@@ -6,13 +6,11 @@ const TEAMS = [
   {
     team: "Liverpool",
     form: "WWDWW",
-    injuries: "2 zawodnikow",
     color: "text-primary",
   },
   {
     team: "Arsenal",
     form: "WLDWW",
-    injuries: "1 zawodnik",
     color: "text-chart-2",
   },
 ]
@@ -42,7 +40,7 @@ export function AppPreview() {
             <div className="absolute left-0 right-0 top-0 h-1 bg-gradient-to-r from-primary to-chart-2" />
 
             <div className="mb-4 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-              Podglad analizy - Premier League - 2026-04-15
+              Podgląd analizy - Premier League - 2026-04-15
             </div>
 
             <div className="mb-6 text-2xl font-bold">
@@ -84,7 +82,7 @@ export function AppPreview() {
               </div>
               <div className="text-right">
                 <div className="mb-1 text-[9px] uppercase tracking-widest text-muted-foreground">
-                  PEWNOSC
+                  PEWNOŚĆ
                 </div>
                 <div className="font-mono text-2xl font-extrabold text-primary">
                   8/10
@@ -97,7 +95,7 @@ export function AppPreview() {
               {[
                 { label: "Prawdop.", value: "72%" },
                 { label: "Value", value: "TAK", valueColor: "text-primary" },
-                { label: "Ryzyko", value: "srednie", valueColor: "text-warning" },
+                { label: "Ryzyko", value: "Średnie", valueColor: "text-warning" },
               ].map((stat) => (
                 <div
                   key={stat.label}
@@ -114,8 +112,8 @@ export function AppPreview() {
             </div>
 
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Liverpool gra u siebie z bardzo dobra forma. Arsenal rowniez w
-              wysokiej dyspozycji - spodziewam sie otwartego meczu z wieloma
+              Liverpool gra u siebie z bardzo dobrą formą. Arsenal równiez w
+              wysokiej dyspozycji - spodziewam się otwartego meczu z wieloma
               bramkami.
             </p>
           </div>
