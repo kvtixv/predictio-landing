@@ -1,18 +1,18 @@
-import { createClient } from '@/lib/supabase/server'
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from "next/server"
+import { createClient } from "@supabase/supabase-js"
 
-export async function GET(request: NextRequest) {
-  const { searchParams, origin } = request.nextUrl
-  const code = searchParams.get('code')
-  const next = searchParams.get('next') ?? '/dashboard'
+export async function GET(request: Request) {
+  const url = new URL(request.url)
+  const code = url.searchParams.get("code")
 
   if (code) {
-    const supabase = await createClient()
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
-    if (!error) {
-      return NextResponse.redirect(`${origin}${next}`)
-    }
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    )
+
+    await supabase.auth.exchangeCodeForSession(code)
   }
 
-  return NextResponse.redirect(`${origin}/auth/error`)
+  return NextResponse.redirect("https://predictio.pl/dashboard")
 }
