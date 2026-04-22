@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
 const NAV_ITEMS = [
-  { label: "Jak to dziala", href: "#how-it-works" },
+  { label: "Jak to działa", href: "#how-it-works" },
   { label: "Funkcje", href: "#features" },
   { label: "Cennik", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
@@ -46,7 +46,7 @@ export function Navbar() {
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary/70 text-primary-foreground shadow-lg">
             <Zap className="h-4 w-4" />
           </div>
-          <span className="text-lg font-extrabold tracking-tight">TipsterAI</span>
+          <span className="text-lg font-extrabold tracking-tight">Predictio</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -62,7 +62,7 @@ export function Navbar() {
           ))}
           <Link href="/login">
             <Button className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:from-primary/90 hover:to-primary/70">
-              Dolacz teraz
+              Dołącz teraz
             </Button>
           </Link>
         </div>
@@ -91,7 +91,7 @@ export function Navbar() {
             ))}
             <Link href="/login" className="mt-2">
               <Button className="w-full bg-gradient-to-r from-primary to-primary/80 text-primary-foreground">
-                Dolacz teraz
+                Dołącz teraz
               </Button>
             </Link>
           </div>
