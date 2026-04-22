@@ -1,9 +1,12 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase/client"
 
 export default function LoginPage() {
+  const router = useRouter()
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -16,12 +19,12 @@ export default function LoginPage() {
     if (error) {
       alert(error.message)
     } else {
-      alert("Zalogowano!")
+      router.push("/dashboard")
     }
   }
 
   return (
-    <div className="p-10">
+    <div style={{ padding: 40 }}>
       <h1>Logowanie</h1>
 
       <input
@@ -29,6 +32,7 @@ export default function LoginPage() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
+      <br /><br />
 
       <input
         type="password"
@@ -36,6 +40,7 @@ export default function LoginPage() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
+      <br /><br />
 
       <button onClick={handleLogin}>
         Zaloguj się
