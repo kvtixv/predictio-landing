@@ -29,7 +29,7 @@ export const MARKETS = [
   "BTTS (Obie strzelą)",
   "Handicap azjatycki",
   "Dokładny wynik",
-  "Corners",
+  "Rzuty rożne",
   "Kartki",
 ] as const;
 
