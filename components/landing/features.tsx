@@ -9,37 +9,37 @@ const FEATURES = [
     icon: BarChart3,
     title: "Auto-research danych",
     description:
-      "AI przeszukuje internet i zbiera H2H, forme, kontuzje, sklady i kursy automatycznie.",
+      "AI przeszukuje internet i zbiera H2H, formę, kontuzje, składy i kursy automatycznie.",
   },
   {
     icon: Target,
     title: "Value bet detector",
     description:
-      "Porownuje prawdopodobienstwo modelu z kursami bukmachera i wskazuje zaklady z przewaga.",
+      "Porównuję prawdopodobieństwo modelu z kursami bukmachera i wskazuje zakłady z przewagą.",
   },
   {
     icon: Zap,
     title: "Analiza w 30 sekund",
     description:
-      "Pelna analiza meczu z danymi, typem i ocena ryzyka gotowa w pol minuty.",
+      "Pełna analiza meczu z danymi, typem i oceną ryzyka gotowa w pól minuty.",
   },
   {
     icon: Share2,
-    title: "Gotowe posty na social media",
+    title: "Decyzje bez analiz",
     description:
-      "Generuje gotowe teksty do wklejenia na Instagram i Telegram - free i VIP.",
+      "Nie musisz sprawdzać statystyk — dostajesz gotowe, przemyślane predykcje w kilka sekund..",
   },
   {
     icon: TrendingUp,
-    title: "Sledzenie wynikow",
+    title: "Śledzenie wyników",
     description:
-      "Automatycznie liczy win rate, ROI i prowadzi historie wszystkich typow.",
+      "Automatycznie liczy win rate, ROI i prowadzi historie wszystkich typów.",
   },
   {
     icon: Lock,
     title: "Tylko dla Ciebie",
     description:
-      "Prywatne narzedzie - nikt inny nie widzi Twoich analiz ani strategii.",
+      "Prywatne narzędzie - nikt inny nie widzi Twoich analiz ani strategii.",
   },
 ]
 
@@ -54,7 +54,7 @@ export function Features() {
           <div className="mb-16 text-center">
             <LandingBadge>Funkcje</LandingBadge>
             <h2 className="mt-5 text-3xl font-extrabold tracking-tight md:text-4xl lg:text-5xl">
-              Wszystko, czego potrzebujesz
+              Wszystko czego potrzebujesz
             </h2>
           </div>
         </FadeIn>
