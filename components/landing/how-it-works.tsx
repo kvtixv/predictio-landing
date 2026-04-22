@@ -10,21 +10,21 @@ const STEPS = [
     icon: Search,
     title: "Wybierz mecz",
     description:
-      "Wpisujesz druzyny i lige. AI automatycznie przeszukuje internet - zbiera H2H, forme, kontuzje, przewidywane sklady i aktualne kursy bukmacherskie.",
+      "Wybierasz ligę oraz drużyny. AI automatycznie przeszukuje internet - zbiera H2H, formę, kontuzje, przewidywane składy i aktualne kursy bukmacherskie.",
   },
   {
     step: "02",
     icon: Brain,
     title: "AI analizuje",
     description:
-      "Sztuczna inteligencja przetwarza zebrane dane, porownuje z kursami bukmacherow i szuka value betow - zakladow, gdzie kurs jest wyzszy niz realne prawdopodobienstwo.",
+      "Sztuczna inteligencja przetwarza zebrane dane, porównuje z kursami bukmacherów i szuka value betow - zakladów, gdzie kurs jest wyższy niz realne prawdopodobieństwo.",
   },
   {
     step: "03",
     icon: Coins,
     title: "Dostajesz typ",
     description:
-      "Otrzymujesz konkretny typ z ocena pewnosci, analiza ryzyka i gotowym postem do publikacji na social media. Sledzisz wyniki i budujesz historie.",
+      "Otrzymujesz konkretną predykcję z oceną pewności, analizą ryzyka oraz prawdopodobieństwem. Śledzisz wyniki i budujesz historię.",
   },
 ]
 
@@ -34,9 +34,9 @@ export function HowItWorks() {
       <div className="mx-auto max-w-5xl">
         <FadeIn>
           <div className="mb-16 text-center">
-            <LandingBadge>Jak to dziala</LandingBadge>
+            <LandingBadge>Jak to działa</LandingBadge>
             <h2 className="mt-5 text-3xl font-extrabold tracking-tight md:text-4xl lg:text-5xl">
-              Trzy kroki do lepszych typow
+              Trzy kroki do lepszych typów
             </h2>
           </div>
         </FadeIn>
