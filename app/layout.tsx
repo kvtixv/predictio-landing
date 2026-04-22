@@ -63,12 +63,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return (
-    <html lang="pl" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${syne.variable} bg-background`}>
-      <body className="font-sans antialiased min-h-screen">
-        {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
-      </body>
-    </html>
-  )
-}
+ return (
+  <html lang="pl">
+    <head />
+    <body
+      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${syne.variable} bg-background`}
+    >
+      {children}
+      {process.env.NODE_ENV === "production" && <Analytics />}
+    </body>
+  </html>
+)
