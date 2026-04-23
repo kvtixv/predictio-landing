@@ -37,7 +37,8 @@ async function apiCall(endpoint: string): Promise<any> {
 // Pobierz mecze na konkretny dzień z top lig
 export async function fetchFixturesByDate(date: string): Promise<ApiFixture[]> {
   const allFixtures: ApiFixture[] = [];
-  for (const leagueId of Object.values(TOP_LEAGUES)) {
+  const data = await apiCall(`/fixtures?date=${date}`);
+return data.response; {
     try {
       const data = await apiCall(`/fixtures?league=${leagueId}&date=${date}&season=${getCurrentSeason(date)}`);
       if (data.response) allFixtures.push(...data.response);
