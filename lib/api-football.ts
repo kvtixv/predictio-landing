@@ -4,7 +4,24 @@ import { createClient } from "@/lib/supabase/server";
 const API_KEY = process.env.API_FOOTBALL_KEY!;
 const BASE = "https://v3.football.api-sports.io";
 
-// Top ligi (żeby nie pobierać wszystkich meczów świata)
+// Nazwy top lig (po nazwie z API-Football). Filtrujemy PO STRONIE KLIENTA,
+// bo plan Free API-Football nie pozwala filtrować po `league` + `season` dla sezonu 2025+.
+export const TOP_LEAGUE_NAMES = new Set([
+  "Premier League",
+  "La Liga",
+  "Serie A",
+  "Bundesliga",
+  "Ligue 1",
+  "Ekstraklasa",
+  "UEFA Champions League",
+  "UEFA Europa League",
+  "UEFA Europa Conference League",
+  "Eredivisie",
+  "Primeira Liga",
+  "Championship",
+]);
+
+// Nadal eksportujemy ID dla kompatybilności z innymi plikami
 export const TOP_LEAGUES: Record<string, number> = {
   "Premier League": 39,
   "La Liga": 140,
@@ -15,7 +32,6 @@ export const TOP_LEAGUES: Record<string, number> = {
   "Champions League": 2,
   "Europa League": 3,
   "Eredivisie": 88,
-  "Liga Portuguesa": 94,
 };
 
 export interface ApiFixture {
@@ -28,45 +44,47 @@ export interface ApiFixture {
 async function apiCall(endpoint: string): Promise<any> {
   const res = await fetch(`${BASE}${endpoint}`, {
     headers: { "x-apisports-key": API_KEY },
-    next: { revalidate: 300 }, // cache 5 min
+    next: { revalidate: 300 },
   });
   if (!res.ok) throw new Error(`API-Football ${res.status}`);
   return res.json();
 }
 
-// Pobierz mecze na konkretny dzień z top lig
+// Pobierz WSZYSTKIE mecze na dany dzień (bez filtra ligi/sezonu - działa na Free planie),
+// a następnie filtruj po nazwach top lig po naszej stronie.
 export async function fetchFixturesByDate(date: string): Promise<ApiFixture[]> {
- const data = await apiCall(`/fixtures?date=${date}`);
-  return data.response || [];
+  try {
+    const data = await apiCall(`/fixtures?date=${date}`);
+    const all: ApiFixture[] = data.response || [];
+    return all.filter((f) => TOP_LEAGUE_NAMES.has(f.league.name));
+  } catch (e) {
+    console.error("fetchFixturesByDate failed:", e);
+    return [];
+  }
 }
 
-// Pobierz wszystkie mecze LIVE
+// Mecze LIVE - endpoint live=all też jest dostępny bez sezonu
 export async function fetchLiveFixtures(): Promise<ApiFixture[]> {
-  const data = await apiCall("/fixtures?live=all");
-  return (data.response || []).filter((f: ApiFixture) =>
-    Object.values(TOP_LEAGUES).includes(f.league.id)
-  );
+  try {
+    const data = await apiCall("/fixtures?live=all");
+    const all: ApiFixture[] = data.response || [];
+    return all.filter((f) => TOP_LEAGUE_NAMES.has(f.league.name));
+  } catch (e) {
+    console.error("fetchLiveFixtures failed:", e);
+    return [];
+  }
 }
 
-// Sezon zależy od miesiąca (sierpień-maj = nowy sezon)
-function getCurrentSeason(dateStr: string): number {
-  const d = new Date(dateStr);
-  const month = d.getMonth() + 1;
-  const year = d.getFullYear();
-  return month >= 7 ? year : year - 1;
-}
-
-// Mapowanie statusu API na nasz format
+// Mapowanie statusu
 export function mapStatus(short: string): "upcoming" | "live" | "finished" {
   if (["NS", "TBD", "PST"].includes(short)) return "upcoming";
   if (["FT", "AET", "PEN", "CANC", "ABD", "AWD", "WO"].includes(short)) return "finished";
-  return "live"; // 1H, 2H, HT, ET, BT, P, LIVE
+  return "live";
 }
 
-// Cache meczów do Supabase
+// Cache do Supabase
 export async function cacheFixtures(fixtures: ApiFixture[]) {
   if (fixtures.length === 0) return;
-
   const supabase = await createClient();
   const rows = fixtures.map((f) => ({
     fixture_id: f.fixture.id,
@@ -85,6 +103,5 @@ export async function cacheFixtures(fixtures: ApiFixture[]) {
     minute: f.fixture.status.elapsed,
     cached_at: new Date().toISOString(),
   }));
-
   await supabase.from("matches_cache").upsert(rows, { onConflict: "fixture_id" });
 }
